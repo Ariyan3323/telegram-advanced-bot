@@ -22,7 +22,9 @@ logger = logging.getLogger(__name__)
 # --- OpenAI Client ---
 try:
     TTS_MODEL = "tts-1-hd"
-    client = OpenAI()
+    # اگر متغیر محیطی تنظیم نشده باشد، از کلید ارائه شده توسط کاربر استفاده می‌کند
+    openai_api_key = os.environ.get("OPENAI_API_KEY", "sk-proj-8XFK3YjCvSlzBKnGmgPXtRmM8qpthuTZ9NrLEMK5eb1reZvYB4lD-I0LqyVVwwj8Mc29i0wffHT3BlbkJrrDrv7JCiEP-gRxnuSYXv1xEJKvkvoJ00Uogk8STOodvgvbbNs23i-TP8q_ItxJJO_qQKxU4uwA")
+    client = OpenAI(api_key=openai_api_key)
     openai_available = True
 except Exception as e:
     logger.error(f"Failed to initialize OpenAI client: {e}")
